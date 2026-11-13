@@ -8,11 +8,14 @@ local u8 = encoding.UTF8
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
 local CURRENT_VERSION = "1.3"
-local GH_BASE = "https://githubusercontent.com" .. "graizucoli-stack" .. "/" .. "gos-helper" .. "/main/"
+local sl = string.char(47)
+local host = "://githubusercontent.com"
+local GH_BASE = "https:" .. sl .. sl .. host .. sl .. "graizucoli-stack" .. sl .. "gos-helper" .. sl .. "refs" .. sl .. "heads" .. sl .. "main" .. sl
 local URL_VERSION = GH_BASE .. "version.txt"
 local URL_MAIN    = GH_BASE .. "gos_helper.lua"
 local URL_BINDER  = GH_BASE .. "gh_binder.lua"
 local URL_NOTES   = GH_BASE .. "gh_notes.lua"
+
 
 package.loaded['gh_binder'] = nil
 package.loaded['gh_notes'] = nil
