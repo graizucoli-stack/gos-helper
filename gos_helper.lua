@@ -3,7 +3,7 @@ local encoding = require 'encoding'
 local vkeys = require 'vkeys'
 local dlstatus = require('moonloader').download_status
 
-local to_cp1251 = encoding.UTF8
+local cp1251 = encoding.UTF8
 local function u8(str) return str end
 
 
