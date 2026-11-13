@@ -7,7 +7,7 @@ encoding.default = 'CP1251'
 local u8 = encoding.CP1251
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
-local CURRENT_VERSION = "1.5"
+local CURRENT_VERSION = "1.6"
 local s = string.char(47)
 local r = string.char(114, 97, 119)
 local d = string.char(46)
