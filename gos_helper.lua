@@ -3,8 +3,8 @@ local encoding = require 'encoding'
 local vkeys = require 'vkeys'
 local dlstatus = require('moonloader').download_status
 
-local cp1251 = encoding.UTF8
-local function u8(str) return str end
+encoding.default = 'CP1251'
+local u8 = encoding.UTF8
 
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
