@@ -9,8 +9,9 @@ local to_ansi = encoding.CP1251
 
 
 
+
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
-local CURRENT_VERSION = "1.6"
+local CURRENT_VERSION = "1.7"
 local s = string.char(47)
 local r = string.char(114, 97, 119)
 local d = string.char(46)
@@ -138,16 +139,17 @@ end
 function save_profile()
     local f = io.open(getWorkingDirectory() .. "\\gh_profile.txt", "w")
     if f then
-        f:write("NAME=" .. u8:decode(_G.GH_Profile.name.v) .. "\n")
-        f:write("SURNAME=" .. u8:decode(_G.GH_Profile.surname.v) .. "\n")
+        f:write("NAME=" .. to_ansi(_G.GH_Profile.name.v) .. "\n")
+        f:write("SURNAME=" .. to_ansi(_G.GH_Profile.surname.v) .. "\n")
         f:write("GENDER=" .. tostring(_G.GH_Profile.gender.v) .. "\n")
-        f:write("FRACTION=" .. u8:decode(_G.GH_Profile.fraction.v) .. "\n")
-        f:write("RANK=" .. u8:decode(_G.GH_Profile.rank.v) .. "\n")
+        f:write("FRACTION=" .. to_ansi(_G.GH_Profile.fraction.v) .. "\n")
+        f:write("RANK=" .. to_ansi(_G.GH_Profile.rank.v) .. "\n")
         f:write(string.format("ACCENT=%.3f,%.3f,%.3f\n", _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab))
         f:write(string.format("BG=%.3f,%.3f,%.3f\n", _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb))
         f:close()
     end
 end
+
 
 function load_profile()
     local path = getWorkingDirectory() .. "\\gh_profile.txt"
