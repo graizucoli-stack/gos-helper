@@ -227,6 +227,12 @@ function M.save()
     end
 end
 
+local function safe_decode(str)
+    if not str or str == "" then return "" end
+    local ok, res = pcall(function() return to_ansi:decode(str) end)
+    return ok and res or str
+end
+
 function M.load()
     local path = getWorkingDirectory() .. "\\gh_binds.txt"
     if doesFileExist(path) then
@@ -243,17 +249,17 @@ function M.load()
                     for _, b in ipairs(default_binds) do
                         if b.cmd == a1 then
                             b.enabled.v = (a2 == "1")
-                            b.text = to_ansi:decode(a3:gsub("\\n", "\n"))
+                            b.text = safe_decode(a3:gsub("\\n", "\n"))
                         end
                     end
                 elseif tag == "CUST" and a1 and a6 then
                     table.insert(custom_binds, {
-                        name = to_ansi:decode(a1),
+                        name = safe_decode(a1),
                         cmd = a2 or "",
                         key = tonumber(a3) or 0,
-                        trig = to_ansi:decode(a4 or ""),
+                        trig = safe_decode(a4 or ""),
                         enabled = imgui.ImBool(a5 == "1"),
-                        text = to_ansi:decode(a6:gsub("\\n", "\n"))
+                        text = safe_decode(a6:gsub("\\n", "\n"))
                     })
                 end
             end
@@ -262,7 +268,6 @@ function M.load()
     end
 end
 
-if sampev_ok then
     function sampev.onServerMessage(col, text)
         local utf_text = to_ansi:decode(text)
         for _, b in ipairs(custom_binds) do
