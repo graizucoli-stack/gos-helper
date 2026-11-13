@@ -7,7 +7,7 @@ encoding.default = 'CP1251'
 local u8 = encoding.UTF8
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
-local CURRENT_VERSION = "1.2"
+local CURRENT_VERSION = "1.3"
 local GH_BASE = "https://githubusercontent.com" .. "graizucoli-stack" .. "/" .. "gos-helper" .. "/main/"
 local URL_VERSION = GH_BASE .. "version.txt"
 local URL_MAIN    = GH_BASE .. "gos_helper.lua"
