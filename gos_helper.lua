@@ -7,11 +7,12 @@ encoding.default = 'CP1251'
 local u8 = encoding.UTF8
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
-local CURRENT_VERSION = "1.0"
-local URL_VERSION = "https://githubusercontent.com"
-local URL_MAIN    = "https://githubusercontent.com"
-local URL_BINDER  = "https://githubusercontent.com"
-local URL_NOTES   = "https://githubusercontent.com"
+local CURRENT_VERSION = "1.2"
+local GH_BASE = "https://githubusercontent.com" .. "graizucoli-stack" .. "/" .. "gos-helper" .. "/main/"
+local URL_VERSION = GH_BASE .. "version.txt"
+local URL_MAIN    = GH_BASE .. "gos_helper.lua"
+local URL_BINDER  = GH_BASE .. "gh_binder.lua"
+local URL_NOTES   = GH_BASE .. "gh_notes.lua"
 
 package.loaded['gh_binder'] = nil
 package.loaded['gh_notes'] = nil
