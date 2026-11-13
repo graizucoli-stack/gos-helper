@@ -8,9 +8,10 @@ local u8 = encoding.UTF8
 
 -- Íàñòðîéêè àâòîîáíîâëåíèÿ (GitHub: graizucoli-stack/gos-helper)
 local CURRENT_VERSION = "1.3"
-local sl = string.char(47)
-local host = "://githubusercontent.com"
-local GH_BASE = "https:" .. sl .. sl .. host .. sl .. "graizucoli-stack" .. sl .. "gos-helper" .. sl .. "refs" .. sl .. "heads" .. sl .. "main" .. sl
+local s = string.char(47)
+local r = string.char(114, 97, 119)
+local d = string.char(46)
+local GH_BASE = "https:" .. s .. s .. r .. d .. "githubusercontent" .. d .. "com" .. s .. "graizucoli-stack" .. s .. "gos-helper" .. s .. "refs" .. s .. "heads" .. s .. "main" .. s
 local URL_VERSION = GH_BASE .. "version.txt"
 local URL_MAIN    = GH_BASE .. "gos_helper.lua"
 local URL_BINDER  = GH_BASE .. "gh_binder.lua"
