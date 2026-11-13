@@ -6,8 +6,8 @@ local dlstatus = require('moonloader').download_status
 encoding.default = 'CP1251'
 local u8 = encoding.UTF8
 
--- Настройки автообновления (GitHub: graizucoli-stack/gos-helper)
-local CURRENT_VERSION = "1.0"
+-- ГЌГ Г±ГІГ°Г®Г©ГЄГЁ Г ГўГІГ®Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї (GitHub: graizucoli-stack/gos-helper)
+local CURRENT_VERSION = "1.2"
 local URL_VERSION = "https://githubusercontent.com"
 local URL_MAIN    = "https://githubusercontent.com"
 local URL_BINDER  = "https://githubusercontent.com"
@@ -23,11 +23,11 @@ local active_page = "home"
 local settings_tab = "profile"
 
 _G.GH_Profile = {
-    name = imgui.ImBuffer(u8'Позывной "Лис"', 64),
+    name = imgui.ImBuffer(u8'ГЏГ®Г§Г»ГўГ­Г®Г© "Г‹ГЁГ±"', 64),
     surname = imgui.ImBuffer(u8"", 64),
     gender = imgui.ImInt(0),
-    fraction = imgui.ImBuffer(u8"УСБ", 64),
-    rank = imgui.ImBuffer(u8"Старший следователь", 64),
+    fraction = imgui.ImBuffer(u8"Г“Г‘ГЃ", 64),
+    rank = imgui.ImBuffer(u8"Г‘ГІГ Г°ГёГЁГ© Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«Гј", 64),
     phone = imgui.ImBuffer(u8"", 8),
     ar = 0.16, ag = 0.45, ab = 0.78,
     br = 0.07, bg = 0.10, bb = 0.15
@@ -48,14 +48,14 @@ function check_updates()
                     os.remove(ver_path)
 
                     if new_ver ~= "" and new_ver ~= CURRENT_VERSION then
-                        sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Доступно обновление {33AAFF}v" .. new_ver .. "{FFFFFF}! Скачиваю...", -1)
+                        sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Г„Г®Г±ГІГіГЇГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ {33AAFF}v" .. new_ver .. "{FFFFFF}! Г‘ГЄГ Г·ГЁГўГ Гѕ...", -1)
                         downloadUrlToFile(URL_MAIN, thisScript().path, function(id2, st2)
                             if st2 == dlstatus.STATUS_ENDDOWNLOADDATA then
                                 downloadUrlToFile(URL_BINDER, getWorkingDirectory() .. "\\lib\\gh_binder.lua", function(id3, st3)
                                     if st3 == dlstatus.STATUS_ENDDOWNLOADDATA then
                                         downloadUrlToFile(URL_NOTES, getWorkingDirectory() .. "\\lib\\gh_notes.lua", function(id4, st4)
                                             if st4 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                                                sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Обновление v" .. new_ver .. " установлено! Перезагружаю...", -1)
+                                                sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ v" .. new_ver .. " ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г®! ГЏГҐГ°ГҐГ§Г ГЈГ°ГіГ¦Г Гѕ...", -1)
                                                 lua_thread.create(function()
                                                     main_window.v = false
                                                     imgui.Process = false
@@ -176,7 +176,7 @@ end
 function copy_dev_link()
     local link = "https://vk.ru"
     setClipboardText(link)
-    sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Ссылка скопирована в буфер обмена: {33AAFF}" .. link, -1)
+    sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Г‘Г±Г»Г«ГЄГ  Г±ГЄГ®ГЇГЁГ°Г®ГўГ Г­Г  Гў ГЎГіГґГҐГ° Г®ГЎГ¬ГҐГ­Г : {33AAFF}" .. link, -1)
 end
 
 function draw_tile(id, title, subtitle, w, h)
@@ -213,7 +213,7 @@ sampUnregisterChatCommand("gh")
 sampRegisterChatCommand("gh", function()
 main_window.v = not main_window.v
 end)
-sampAddChatMessage("{33AAFF}[Gos Helper v" .. CURRENT_VERSION .. "]{FFFFFF} Загружен! Открыть меню: {33AAFF}/gh{FFFFFF} или {33AAFF}F2{FFFFFF}", -1)
+sampAddChatMessage("{33AAFF}[Gos Helper v" .. CURRENT_VERSION .. "]{FFFFFF} Г‡Г ГЈГ°ГіГ¦ГҐГ­! ГЋГІГЄГ°Г»ГІГј Г¬ГҐГ­Гѕ: {33AAFF}/gh{FFFFFF} ГЁГ«ГЁ {33AAFF}F2{FFFFFF}", -1)
 check_updates()
 while true do
 wait(0)
@@ -240,32 +240,32 @@ if active_page == "home" then
 imgui.SetCursorPos(imgui.ImVec2(24, 22))
 imgui.TextColored(get_accent_vec4(1.25, 1.0), u8("GOS HELPER  v" .. CURRENT_VERSION))
 imgui.SetCursorPos(imgui.ImVec2(24, 42))
-imgui.TextColored(imgui.ImVec4(0.75, 0.85, 0.90, 1.00), u8"BY РОКОТОВ & РЕБРОВ  |  Единый помощник гос. структур")
+imgui.TextColored(imgui.ImVec4(0.75, 0.85, 0.90, 1.00), u8"BY ГђГЋГЉГЋГ’ГЋГ‚ & ГђГ…ГЃГђГЋГ‚  |  Г…Г¤ГЁГ­Г»Г© ГЇГ®Г¬Г®Г№Г­ГЁГЄ ГЈГ®Г±. Г±ГІГ°ГіГЄГІГіГ°")
 imgui.SetCursorPos(imgui.ImVec2(14, 76))
 imgui.Separator()
 local tw, th = (w - 64) / 3, 105
 imgui.SetCursorPos(imgui.ImVec2(20, 105))
-if draw_tile("t_bind", "Биндер", "Отыгровки действий,\nкоманды и свои бинды", tw, th) then active_page = "binder" end
+if draw_tile("t_bind", "ГЃГЁГ­Г¤ГҐГ°", "ГЋГІГ»ГЈГ°Г®ГўГЄГЁ Г¤ГҐГ©Г±ГІГўГЁГ©,\nГЄГ®Г¬Г Г­Г¤Г» ГЁ Г±ГўГ®ГЁ ГЎГЁГ­Г¤Г»", tw, th) then active_page = "binder" end
 imgui.SetCursorPos(imgui.ImVec2(20 + tw + 12, 105))
-if draw_tile("t_note", "Заметки и Кодексы", "Личный блокнот, УК,\nФЗ, ТК и КоАП Хелпер", tw, th) then active_page = "notes" end
+if draw_tile("t_note", "Г‡Г Г¬ГҐГІГЄГЁ ГЁ ГЉГ®Г¤ГҐГЄГ±Г»", "Г‹ГЁГ·Г­Г»Г© ГЎГ«Г®ГЄГ­Г®ГІ, Г“ГЉ,\nГ”Г‡, Г’ГЉ ГЁ ГЉГ®ГЂГЏ Г•ГҐГ«ГЇГҐГ°", tw, th) then active_page = "notes" end
 imgui.SetCursorPos(imgui.ImVec2(20 + (tw + 12) * 2, 105))
-if draw_tile("t_sett", "Настройки", "Профиль персонажа\nи палитра цветов меню", tw, th) then active_page = "settings" end
+if draw_tile("t_sett", "ГЌГ Г±ГІГ°Г®Г©ГЄГЁ", "ГЏГ°Г®ГґГЁГ«Гј ГЇГҐГ°Г±Г®Г­Г Г¦Г \nГЁ ГЇГ Г«ГЁГІГ°Г  Г¶ГўГҐГІГ®Гў Г¬ГҐГ­Гѕ", tw, th) then active_page = "settings" end
 local bw2 = (w - 52) / 2
 imgui.SetCursorPos(imgui.ImVec2(20, 225))
-if draw_tile("t_info", "Info (Команды)", "Справочник по всем\nкомандам и клавишам", bw2, 95) then
+if draw_tile("t_info", "Info (ГЉГ®Г¬Г Г­Г¤Г»)", "Г‘ГЇГ°Г ГўГ®Г·Г­ГЁГЄ ГЇГ® ГўГ±ГҐГ¬\nГЄГ®Г¬Г Г­Г¤Г Г¬ ГЁ ГЄГ«Г ГўГЁГёГ Г¬", bw2, 95) then
 active_page = "info"
 end
 imgui.SetCursorPos(imgui.ImVec2(20 + bw2 + 12, 225))
-if draw_tile("t_dev", "Связь с разработчиком", "ВКонтакте: vk.ru\n(Нажмите, чтобы скопировать ссылку)", bw2, 95) then
+if draw_tile("t_dev", "Г‘ГўГїГ§Гј Г± Г°Г Г§Г°Г ГЎГ®ГІГ·ГЁГЄГ®Г¬", "Г‚ГЉГ®Г­ГІГ ГЄГІГҐ: vk.ru\n(ГЌГ Г¦Г¬ГЁГІГҐ, Г·ГІГ®ГЎГ» Г±ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј Г±Г±Г»Г«ГЄГі)", bw2, 95) then
 copy_dev_link()
 active_page = "developer"
 end
 else
 imgui.SetCursorPos(imgui.ImVec2(14, 14))
 imgui.BeginChild("Sidebar", imgui.ImVec2(210, h - 28), true)
-if imgui.Button(u8"<-  На главную", imgui.ImVec2(-1, 30)) then active_page = "home" end
+if imgui.Button(u8"<-  ГЌГ  ГЈГ«Г ГўГ­ГіГѕ", imgui.ImVec2(-1, 30)) then active_page = "home" end
 imgui.Spacing()
-if imgui.Selectable(u8"  Главная", false, 0, imgui.ImVec2(0, 26)) then active_page = "home" end
+if imgui.Selectable(u8"  ГѓГ«Г ГўГ­Г Гї", false, 0, imgui.ImVec2(0, 26)) then active_page = "home" end
 imgui.Separator()
 imgui.Spacing()
 if active_page == "binder" and binder_ok then
@@ -273,85 +273,85 @@ binder.draw_sidebar()
 elseif active_page == "notes" and notes_ok then
 notes.draw_sidebar()
 elseif active_page == "settings" then
-imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  Настройки")
+imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  ГЌГ Г±ГІГ°Г®Г©ГЄГЁ")
 imgui.Spacing()
-if imgui.Selectable(u8"  Профиль и Биндер", settings_tab == "profile", 0, imgui.ImVec2(0, 26)) then settings_tab = "profile" end
-if imgui.Selectable(u8"  Цвета и Оформление", settings_tab == "colors", 0, imgui.ImVec2(0, 26)) then settings_tab = "colors" end
+if imgui.Selectable(u8"  ГЏГ°Г®ГґГЁГ«Гј ГЁ ГЃГЁГ­Г¤ГҐГ°", settings_tab == "profile", 0, imgui.ImVec2(0, 26)) then settings_tab = "profile" end
+if imgui.Selectable(u8"  Г–ГўГҐГІГ  ГЁ ГЋГґГ®Г°Г¬Г«ГҐГ­ГЁГҐ", settings_tab == "colors", 0, imgui.ImVec2(0, 26)) then settings_tab = "colors" end
 elseif active_page == "info" then
-imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  Справка")
+imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  Г‘ГЇГ°Г ГўГЄГ ")
 imgui.Spacing()
-imgui.Selectable(u8"  Info (Команды)", true, 0, imgui.ImVec2(0, 26))
+imgui.Selectable(u8"  Info (ГЉГ®Г¬Г Г­Г¤Г»)", true, 0, imgui.ImVec2(0, 26))
 elseif active_page == "developer" then
-imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  Информация")
+imgui.TextColored(imgui.ImVec4(0.55, 0.70, 0.75, 1.00), u8"  Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї")
 imgui.Spacing()
-imgui.Selectable(u8"  Связь с разработчиком", true, 0, imgui.ImVec2(0, 26))
+imgui.Selectable(u8"  Г‘ГўГїГ§Гј Г± Г°Г Г§Г°Г ГЎГ®ГІГ·ГЁГЄГ®Г¬", true, 0, imgui.ImVec2(0, 26))
 end
 imgui.EndChild()
 imgui.SetCursorPos(imgui.ImVec2(232, 42))
 imgui.BeginChild("Content", imgui.ImVec2(w - 246, h - 56), true)
 if active_page == "binder" then
-if binder_ok then binder.draw_content() else imgui.Text(u8"Файл gh_binder.lua не найден!") end
+if binder_ok then binder.draw_content() else imgui.Text(u8"Г”Г Г©Г« gh_binder.lua Г­ГҐ Г­Г Г©Г¤ГҐГ­!") end
 elseif active_page == "notes" then
-if notes_ok then notes.draw_content(main_window) else imgui.Text(u8"Файл gh_notes.lua не найден!") end
+if notes_ok then notes.draw_content(main_window) else imgui.Text(u8"Г”Г Г©Г« gh_notes.lua Г­ГҐ Г­Г Г©Г¤ГҐГ­!") end
 elseif active_page == "info" then
-imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Info — Справочник по основным командам")
+imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Info В— Г‘ГЇГ°Г ГўГ®Г·Г­ГЁГЄ ГЇГ® Г®Г±Г­Г®ГўГ­Г»Г¬ ГЄГ®Г¬Г Г­Г¤Г Г¬")
 imgui.Separator()
 imgui.Spacing()
 local cmds = {
-{ cmd = "/gh  или  F2", desc = "Открыть / закрыть главное меню Gos Helper" },
-{ cmd = "/tk  (или /tkfind)", desc = "Трудовой Кодекс (ТК)" },
-{ cmd = "/uk [ID игрока]", desc = "Умный розыск — объявить игрока в розыск" },
-{ cmd = "/fz", desc = "Федеральный закон о ФСБ (ФЗоФСБ)" },
-{ cmd = "/koap", desc = "Кодекс об Административных Правонарушениях (КоАП Хелпер)" }
+{ cmd = "/gh  ГЁГ«ГЁ  F2", desc = "ГЋГІГЄГ°Г»ГІГј / Г§Г ГЄГ°Г»ГІГј ГЈГ«Г ГўГ­Г®ГҐ Г¬ГҐГ­Гѕ Gos Helper" },
+{ cmd = "/tk  (ГЁГ«ГЁ /tkfind)", desc = "Г’Г°ГіГ¤Г®ГўГ®Г© ГЉГ®Г¤ГҐГЄГ± (Г’ГЉ)" },
+{ cmd = "/uk [ID ГЁГЈГ°Г®ГЄГ ]", desc = "Г“Г¬Г­Г»Г© Г°Г®Г§Г»Г±ГЄ В— Г®ГЎГєГїГўГЁГІГј ГЁГЈГ°Г®ГЄГ  Гў Г°Г®Г§Г»Г±ГЄ" },
+{ cmd = "/fz", desc = "Г”ГҐГ¤ГҐГ°Г Г«ГјГ­Г»Г© Г§Г ГЄГ®Г­ Г® Г”Г‘ГЃ (Г”Г‡Г®Г”Г‘ГЃ)" },
+{ cmd = "/koap", desc = "ГЉГ®Г¤ГҐГЄГ± Г®ГЎ ГЂГ¤Г¬ГЁГ­ГЁГ±ГІГ°Г ГІГЁГўГ­Г»Гµ ГЏГ°Г ГўГ®Г­Г Г°ГіГёГҐГ­ГЁГїГµ (ГЉГ®ГЂГЏ Г•ГҐГ«ГЇГҐГ°)" }
 }
 for _, item in ipairs(cmds) do
 imgui.Spacing()
 imgui.TextColored(get_accent_vec4(1.3, 1.0), u8(item.cmd))
 imgui.SameLine(180)
-imgui.Text(u8("—  " .. item.desc))
+imgui.Text(u8("В—  " .. item.desc))
 imgui.Spacing()
 imgui.Separator()
 end
 elseif active_page == "developer" then
-imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Связь с разработчиком (BY РОКОТОВ & РЕБРОВ)")
+imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Г‘ГўГїГ§Гј Г± Г°Г Г§Г°Г ГЎГ®ГІГ·ГЁГЄГ®Г¬ (BY ГђГЋГЉГЋГ’ГЋГ‚ & ГђГ…ГЃГђГЋГ‚)")
 imgui.Separator()
 imgui.Spacing()
-imgui.TextWrapped(u8"По всем вопросам, багам, предложениям и доработкам скрипта Gos Helper обращайтесь в личные сообщения ВКонтакте:")
+imgui.TextWrapped(u8"ГЏГ® ГўГ±ГҐГ¬ ГўГ®ГЇГ°Г®Г±Г Г¬, ГЎГ ГЈГ Г¬, ГЇГ°ГҐГ¤Г«Г®Г¦ГҐГ­ГЁГїГ¬ ГЁ Г¤Г®Г°Г ГЎГ®ГІГЄГ Г¬ Г±ГЄГ°ГЁГЇГІГ  Gos Helper Г®ГЎГ°Г Г№Г Г©ГІГҐГ±Гј Гў Г«ГЁГ·Г­Г»ГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГї Г‚ГЉГ®Г­ГІГ ГЄГІГҐ:")
 imgui.Spacing()
 imgui.TextColored(imgui.ImVec4(0.35, 0.80, 1.00, 1.00), u8"vk.ru")
 imgui.Spacing()
-if imgui.Button(u8"Скопировать ссылку ВК", imgui.ImVec2(190, 28)) then
+if imgui.Button(u8"Г‘ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј Г±Г±Г»Г«ГЄГі Г‚ГЉ", imgui.ImVec2(190, 28)) then
 copy_dev_link()
 end
 elseif active_page == "settings" then
 if settings_tab == "profile" then
-imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Настройки профиля (автоподстановка в биндер)")
+imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"ГЌГ Г±ГІГ°Г®Г©ГЄГЁ ГЇГ°Г®ГґГЁГ«Гї (Г ГўГІГ®ГЇГ®Г¤Г±ГІГ Г­Г®ГўГЄГ  Гў ГЎГЁГ­Г¤ГҐГ°)")
 imgui.Separator()
 imgui.Spacing()
 imgui.PushItemWidth(220)
-imgui.InputText(u8"Ваше имя / Позывной", _G.GH_Profile.name)
-imgui.InputText(u8"Ваша фамилия", _G.GH_Profile.surname)
-imgui.Combo(u8"Ваш пол", _G.GH_Profile.gender, { u8"Мужской", u8"Женский" }, 2)
-imgui.InputText(u8"Ваша фракция", _G.GH_Profile.fraction)
-imgui.InputText(u8"Ваша должность", _G.GH_Profile.rank)
+imgui.InputText(u8"Г‚Г ГёГҐ ГЁГ¬Гї / ГЏГ®Г§Г»ГўГ­Г®Г©", _G.GH_Profile.name)
+imgui.InputText(u8"Г‚Г ГёГ  ГґГ Г¬ГЁГ«ГЁГї", _G.GH_Profile.surname)
+imgui.Combo(u8"Г‚Г Гё ГЇГ®Г«", _G.GH_Profile.gender, { u8"ГЊГіГ¦Г±ГЄГ®Г©", u8"Г†ГҐГ­Г±ГЄГЁГ©" }, 2)
+imgui.InputText(u8"Г‚Г ГёГ  ГґГ°Г ГЄГ¶ГЁГї", _G.GH_Profile.fraction)
+imgui.InputText(u8"Г‚Г ГёГ  Г¤Г®Г«Г¦Г­Г®Г±ГІГј", _G.GH_Profile.rank)
 imgui.PopItemWidth()
 imgui.Spacing()
-if imgui.Button(u8"Сохранить профиль", imgui.ImVec2(160, 28)) then
+if imgui.Button(u8"Г‘Г®ГµГ°Г Г­ГЁГІГј ГЇГ°Г®ГґГЁГ«Гј", imgui.ImVec2(160, 28)) then
 save_profile()
-sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Профиль сохранен!", -1)
+sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} ГЏГ°Г®ГґГЁГ«Гј Г±Г®ГµГ°Г Г­ГҐГ­!", -1)
 end
 elseif settings_tab == "colors" then
-imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"Настройка цветов интерфейса (на любой вкус)")
+imgui.TextColored(get_accent_vec4(1.25, 1.0), u8"ГЌГ Г±ГІГ°Г®Г©ГЄГ  Г¶ГўГҐГІГ®Гў ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г  (Г­Г  Г«ГѕГЎГ®Г© ГўГЄГіГ±)")
 imgui.Separator()
 imgui.Spacing()
 imgui.PushItemWidth(220)
-if imgui.ColorEdit3(u8"Цвет акцента (кнопки, рамки)", accent_buf) then
+if imgui.ColorEdit3(u8"Г–ГўГҐГІ Г ГЄГ¶ГҐГ­ГІГ  (ГЄГ­Г®ГЇГЄГЁ, Г°Г Г¬ГЄГЁ)", accent_buf) then
 local r, g, b = accent_buf.v, accent_buf.v, accent_buf.v
 _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab = r, g, b
 apply_custom_theme()
 end
 imgui.Spacing()
-if imgui.ColorEdit3(u8"Цвет фона окна", bg_buf) then
+if imgui.ColorEdit3(u8"Г–ГўГҐГІ ГґГ®Г­Г  Г®ГЄГ­Г ", bg_buf) then
 local r, g, b = bg_buf.v, bg_buf.v, bg_buf.v
 _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb = r, g, b
 apply_custom_theme()
@@ -360,29 +360,29 @@ imgui.PopItemWidth()
 imgui.Spacing()
 imgui.Separator()
 imgui.Spacing()
-imgui.Text(u8"Готовые пресеты:")
-if imgui.Button(u8"Police Синий", imgui.ImVec2(115, 26)) then
+imgui.Text(u8"ГѓГ®ГІГ®ГўГ»ГҐ ГЇГ°ГҐГ±ГҐГІГ»:")
+if imgui.Button(u8"Police Г‘ГЁГ­ГЁГ©", imgui.ImVec2(115, 26)) then
 _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab = 0.16, 0.45, 0.78
 _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb = 0.07, 0.10, 0.15
 sync_color_buffers()
 apply_custom_theme()
 end
 imgui.SameLine()
-if imgui.Button(u8"Бирюзовый", imgui.ImVec2(110, 26)) then
+if imgui.Button(u8"ГЃГЁГ°ГѕГ§Г®ГўГ»Г©", imgui.ImVec2(110, 26)) then
 _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab = 0.18, 0.62, 0.68
 _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb = 0.05, 0.15, 0.16
 sync_color_buffers()
 apply_custom_theme()
 end
 imgui.SameLine()
-if imgui.Button(u8"ФСБ Красный", imgui.ImVec2(115, 26)) then
+if imgui.Button(u8"Г”Г‘ГЃ ГЉГ°Г Г±Г­Г»Г©", imgui.ImVec2(115, 26)) then
 _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab = 0.75, 0.18, 0.22
 _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb = 0.12, 0.06, 0.07
 sync_color_buffers()
 apply_custom_theme()
 end
 imgui.SameLine()
-if imgui.Button(u8"Изумруд", imgui.ImVec2(100, 26)) then
+if imgui.Button(u8"Г€Г§ГіГ¬Г°ГіГ¤", imgui.ImVec2(100, 26)) then
 _G.GH_Profile.ar, _G.GH_Profile.ag, _G.GH_Profile.ab = 0.16, 0.65, 0.38
 _G.GH_Profile.br, _G.GH_Profile.bg, _G.GH_Profile.bb = 0.06, 0.13, 0.09
 sync_color_buffers()
@@ -390,9 +390,9 @@ apply_custom_theme()
 end
 imgui.Spacing()
 imgui.Spacing()
-if imgui.Button(u8"Сохранить цвета", imgui.ImVec2(160, 28)) then
+if imgui.Button(u8"Г‘Г®ГµГ°Г Г­ГЁГІГј Г¶ГўГҐГІГ ", imgui.ImVec2(160, 28)) then
 save_profile()
-sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Цветовая схема сохранена!", -1)
+sampAddChatMessage("{33AAFF}[Gos Helper]{FFFFFF} Г–ГўГҐГІГ®ГўГ Гї Г±ГµГҐГ¬Г  Г±Г®ГµГ°Г Г­ГҐГ­Г !", -1)
 end
 end
 end
